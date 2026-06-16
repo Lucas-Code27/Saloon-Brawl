@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://brccfcercfwv6"]
+
+[ext_resource type="Shader" uid="uid://4h4qgeuev1qq" path="res://Assets/Shaders/ps1.gdshader" id="1_n0eg4"]
+[ext_resource type="Texture2D" uid="uid://c7vd1ocy5dur" path="res://Assets/Models/Enemy_enemy.png" id="2_pvchc"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_n0eg4")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("2_pvchc")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)

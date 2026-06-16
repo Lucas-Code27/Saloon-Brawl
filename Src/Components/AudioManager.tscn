@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmo8mirbiawxi"]
+
+[ext_resource type="Script" uid="uid://8v7ca2v5bmvf" path="res://Src/Components/audio_manager.gd" id="1_0os5b"]
+[ext_resource type="AudioStream" uid="uid://bdcj0rfaul7u2" path="res://Assets/Sounds/explosion(7).wav" id="2_pxkw4"]
+[ext_resource type="AudioStream" uid="uid://biqoxwrfkuaok" path="res://Assets/Sounds/explosion(8).wav" id="3_fval0"]
+[ext_resource type="AudioStream" uid="uid://bhw78htcsp65j" path="res://Assets/Sounds/hitHurt(3).wav" id="4_w8c8w"]
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("clips")]
+script = ExtResource("1_0os5b")
+clips = NodePath("Clips")
+
+[node name="Clips" type="Node" parent="."]
+
+[node name="swing" type="AudioStreamPlayer" parent="Clips"]
+stream = ExtResource("2_pxkw4")
+
+[node name="hit" type="AudioStreamPlayer" parent="Clips"]
+stream = ExtResource("3_fval0")
+
+[node name="enemyhurt" type="AudioStreamPlayer" parent="Clips"]
+stream = ExtResource("4_w8c8w")

@@ -1,0 +1,52 @@
+[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://p4foxpe3ma3t"]
+
+[ext_resource type="Texture2D" uid="uid://c7vd1ocy5dur" path="res://Assets/Models/Enemy_enemy.png" id="1_gvqrq"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_cdlub"]
+texture = ExtResource("1_gvqrq")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_ntpu2"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(10, 0.5, 0.5)]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+
+// Varyings
+varying vec3 var_multi;
+
+uniform sampler2D tex_frg_2 : source_color;
+
+
+
+void vertex() {
+	var_multi = vec3(0.0);
+}
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// VectorOp:3
+	vec3 n_in3p1 = vec3(10.00000, 0.50000, 0.50000);
+	vec3 n_out3p0 = vec3(n_out2p0.xyz) * n_in3p1;
+
+
+// Output:0
+	ALBEDO = n_out3p0;
+
+
+}
+"
+flags/unshaded = true
+varyings/multi = "0,4"
+nodes/fragment/0/position = Vector2(360, 240)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_cdlub")
+nodes/fragment/2/position = Vector2(-300, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVectorOp_ntpu2")
+nodes/fragment/3/position = Vector2(20, 300)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0)

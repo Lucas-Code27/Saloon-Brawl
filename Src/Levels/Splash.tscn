@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6dt6tkb5wu2e"]
+
+[ext_resource type="Script" uid="uid://2pjw3dq3sq86" path="res://Src/Levels/splash.gd" id="1_gn7lx"]
+[ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="1_oljkc"]
+[ext_resource type="PackedScene" uid="uid://dinmvdo6wm3cs" path="res://Src/Levels/Menu_Scene.tscn" id="2_m1xej"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqeie"]
+font = ExtResource("1_oljkc")
+font_size = 24
+font_color = Color(1, 0.831373, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ye622"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pbgib"]
+resource_name = "fade_in"
+
+[sub_resource type="Animation" id="Animation_8087u"]
+resource_name = "fade_in_out"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(0.191185, 3, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"end_fade"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plspo"]
+_data = {
+&"RESET": SubResource("Animation_ye622"),
+&"fade_in": SubResource("Animation_pbgib"),
+&"fade_in_out": SubResource("Animation_8087u")
+}
+
+[node name="Splash" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gn7lx")
+NextScene = ExtResource("2_m1xej")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.195472, 0.238466, 0.176613, 1)
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -16.0
+offset_right = 145.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A game by Lucas-code and viylouu"
+label_settings = SubResource("LabelSettings_vqeie")
+
+[node name="Fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_plspo")
+}

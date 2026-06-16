@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1r18ke1v3ivi"]
+
+[ext_resource type="Script" uid="uid://bfbxcc75ta2e6" path="res://Src/Levels/main_menu.gd" id="1_6cs7p"]
+[ext_resource type="PackedScene" uid="uid://cf8njnp41owya" path="res://Src/Levels/test_map.tscn" id="2_8wsh4"]
+[ext_resource type="AudioStream" uid="uid://oans2m5207xb" path="res://Assets/Music/GLORGLUEPINBACNTOECDPOP.wav" id="3_o7wo5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yd56w"]
+font_size = 32
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6cs7p")
+game_scene = ExtResource("2_8wsh4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.5
+offset_top = 20.0
+offset_right = 50.5
+offset_bottom = 43.0
+grow_horizontal = 2
+text = "Saloon Brawl"
+label_settings = SubResource("LabelSettings_yd56w")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -15.5
+offset_right = 20.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = 34.5
+offset_right = 21.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_o7wo5")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

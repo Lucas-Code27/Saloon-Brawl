@@ -1,0 +1,94 @@
+[gd_scene load_steps=17 format=3 uid="uid://cf8njnp41owya"]
+
+[ext_resource type="PackedScene" uid="uid://d6ltsuufe12g" path="res://Src/Player/Player.tscn" id="1_2v7fd"]
+[ext_resource type="Script" uid="uid://bjiv0bitkvdhy" path="res://Src/Levels/spawning.gd" id="1_wclbs"]
+[ext_resource type="PackedScene" uid="uid://calv6qik5ix0p" path="res://Src/Levels/Hud.tscn" id="1_y7s01"]
+[ext_resource type="AudioStream" uid="uid://08wn1jkm6b0x" path="res://Assets/Music/shank (game ver).wav" id="2_0ao4v"]
+[ext_resource type="Shader" uid="uid://befag1qtm05bj" path="res://Assets/Shaders/ColorLimiter.gdshader" id="2_owe1g"]
+[ext_resource type="PackedScene" uid="uid://co2cairtrfyu4" path="res://Src/Enemies/test/testenemy.tscn" id="3_4wq3e"]
+[ext_resource type="Shader" uid="uid://4h4qgeuev1qq" path="res://Assets/Shaders/ps1.gdshader" id="4_rp8q1"]
+[ext_resource type="Texture2D" uid="uid://c7vd1ocy5dur" path="res://Assets/Models/Enemy_enemy.png" id="5_u2rt0"]
+[ext_resource type="Script" uid="uid://dg14i7nn7kgpj" path="res://Src/Components/spawner_3d.gd" id="8_vwmdl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7lo3e"]
+resource_local_to_scene = true
+shader = ExtResource("2_owe1g")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0xy2e"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_uvtkh"]
+sky_material = SubResource("ProceduralSkyMaterial_0xy2e")
+
+[sub_resource type="Environment" id="Environment_o3j6u"]
+background_mode = 2
+background_color = Color(0.519627, 0.872313, 0.947352, 1)
+sky = SubResource("Sky_uvtkh")
+tonemap_mode = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abnql"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_rp8q1")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("5_u2rt0")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_lvt63"]
+vertices = PackedVector3Array(-12, 0.4995, -12, -12, 0.4995, 12, 12, 0.4995, 12, 12, 0.4995, -12)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgm3a"]
+shading_mode = 2
+albedo_color = Color(0.00312143, 0.247335, 0, 1)
+
+[node name="TestMap" type="Node3D"]
+script = ExtResource("1_wclbs")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_7lo3e")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Hud" parent="UI" instance=ExtResource("1_y7s01")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o3j6u")
+
+[node name="Player" parent="." instance=ExtResource("1_2v7fd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.501, 0.25)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0ao4v")
+autoplay = true
+
+[node name="Testenemy" parent="." instance=ExtResource("3_4wq3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.75, 0.48923, -7.95)
+normalmat = SubResource("ShaderMaterial_abnql")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.000499994, 0)
+navigation_mesh = SubResource("NavigationMesh_lvt63")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(25, 0.001, 25)
+material = SubResource("StandardMaterial3D_kgm3a")
+
+[node name="Spawner3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -10.45)
+script = ExtResource("8_vwmdl")
+spawned = ExtResource("3_4wq3e")

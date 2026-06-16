@@ -1,0 +1,361 @@
+[gd_scene load_steps=26 format=3 uid="uid://dinmvdo6wm3cs"]
+
+[ext_resource type="Texture2D" uid="uid://dao1ji2khj0n5" path="res://Assets/Textures/wall.png" id="1_77tio"]
+[ext_resource type="PackedScene" uid="uid://d1r18ke1v3ivi" path="res://Src/Levels/main_menu.tscn" id="1_ecwnw"]
+[ext_resource type="PackedScene" uid="uid://iqqtgvuvsk5h" path="res://Src/Levels/Saloon.tscn" id="2_01p5o"]
+[ext_resource type="Texture2D" uid="uid://calx3das2sc40" path="res://Assets/Textures/woodplanks.png" id="2_qx81m"]
+[ext_resource type="Texture2D" uid="uid://cwc42w48647e1" path="res://Assets/Textures/DOOR.png" id="3_0a1nf"]
+[ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="3_i6fmt"]
+[ext_resource type="ArrayMesh" uid="uid://c1udeg722gj15" path="res://Assets/Models/counter.obj" id="4_b4wa3"]
+[ext_resource type="PackedScene" uid="uid://cxublyemvpejd" path="res://Assets/map piece/Table.tscn" id="5_mhx0h"]
+[ext_resource type="Script" uid="uid://beimqbwm8cqvi" path="res://Src/UI/Scripts/volume_slider.gd" id="8_o2u86"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_60i2j"]
+albedo_texture = ExtResource("1_77tio")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dpn8"]
+albedo_texture = ExtResource("1_77tio")
+uv1_scale = Vector3(5, 5, 5)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gk68"]
+albedo_texture = ExtResource("2_qx81m")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ux4w"]
+size = Vector3(0.001, 2.6, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouedl"]
+albedo_texture = ExtResource("2_qx81m")
+uv1_scale = Vector3(20, 5, 5)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axi6p"]
+albedo_texture = ExtResource("2_qx81m")
+uv1_scale = Vector3(5, 5, 5)
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ynx2x"]
+albedo_texture = ExtResource("1_77tio")
+uv1_scale = Vector3(7, 7, 7)
+texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_au178"]
+size = Vector3(5.25, 2.55, 9.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rldls"]
+size = Vector3(0.05, 1, 4.8)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fxolq"]
+sky_top_color = Color(0, 0.537233, 0.994801, 1)
+sky_horizon_color = Color(0.75416, 0.452126, 1.92523e-07, 1)
+ground_bottom_color = Color(0.733269, 0.654602, 0.479748, 1)
+ground_horizon_color = Color(0.752941, 0.45098, 0, 1)
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_ka3yl"]
+sky_material = SubResource("ProceduralSkyMaterial_fxolq")
+radiance_size = 2
+
+[sub_resource type="Environment" id="Environment_yp84m"]
+background_mode = 2
+background_color = Color(0.359181, 0.707724, 1, 1)
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_ka3yl")
+tonemap_mode = 2
+fog_mode = 1
+fog_light_color = Color(0.646984, 0.541372, 0.345756, 1)
+fog_density = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ef7lh"]
+font = ExtResource("3_i6fmt")
+font_size = 24
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_qejlj"]
+default_font = ExtResource("3_i6fmt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dhcoo"]
+font = ExtResource("3_i6fmt")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_6dmq1"]
+font = ExtResource("3_i6fmt")
+font_size = 12
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MenuScene" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MenuScene"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="MenuScene/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="MenuScene/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.965926, -0.0669873, 0.25, 0, 0.965926, 0.258819, -0.258819, -0.25, 0.933013, 0, 0, 0)
+
+[node name="Map" type="Node3D" parent="MenuScene/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.519615, 0, -0.3, 0, 0.6, 0, 0.3, 0, 0.519615, -1.65, -2.75, -5.05)
+
+[node name="LeftWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.08616e-07, 3, -7.45)
+use_collision = true
+size = Vector3(0.1, 5, 15)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="RightWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.08616e-07, 3, 7.45)
+use_collision = true
+size = Vector3(0.1, 5, 15)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="FrontWall3" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 4.275, 3.3)
+size = Vector3(0.05, 2.45, 1.5)
+material = SubResource("StandardMaterial3D_4dpn8")
+
+[node name="Roof" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.075, 6, 0)
+size = Vector3(21.15, 1, 15)
+material = SubResource("StandardMaterial3D_5gk68")
+
+[node name="FrontDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor"]
+transform = Transform3D(-5.28907e-08, 0, -1, 0, 1, 0, 1.21, 0, -4.37114e-08, 7.41667, 1.33333, 3.33333)
+texture_filter = 2
+texture = ExtResource("3_0a1nf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39216, 1.78333, 3.3)
+shape = SubResource("BoxShape3D_0ux4w")
+
+[node name="BackDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor"]
+transform = Transform3D(-5.28907e-08, 0, -1, 0, 1, 0, 1.21, 0, -4.37114e-08, -7.5, 1.33333, -6.58334)
+texture_filter = 2
+texture = ExtResource("3_0a1nf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42501, 1.78333, -6.7)
+shape = SubResource("BoxShape3D_0ux4w")
+
+[node name="BackDoorTop" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46716, 4.275, -6.6)
+size = Vector3(0.001, 2.45, 1.6)
+material = SubResource("StandardMaterial3D_4dpn8")
+
+[node name="BackRoomBack" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6167, 3, -2.23517e-07)
+size = Vector3(0.1, 5, 15)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="LeftWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.4917, 3, -7.45)
+size = Vector3(0.1, 5, 6.15)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="Porch" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
+use_collision = true
+size = Vector3(2, 1, 15)
+material = SubResource("StandardMaterial3D_ouedl")
+
+[node name="Floor" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+use_collision = true
+size = Vector3(15, 1, 15)
+material = SubResource("StandardMaterial3D_5gk68")
+
+[node name="Floor2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.575, 0, 0)
+use_collision = true
+size = Vector3(6.15, 1, 15)
+material = SubResource("StandardMaterial3D_5gk68")
+
+[node name="FrontWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, 5.775)
+use_collision = true
+size = Vector3(0.05, 5, 3.45)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="BackWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -7.475, 3, 0.85)
+use_collision = true
+size = Vector3(0.05, 5, 13.3)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="FrontWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
+use_collision = true
+size = Vector3(0.05, 5, 10.05)
+material = SubResource("StandardMaterial3D_60i2j")
+
+[node name="Counter" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+
+[node name="counter" type="MeshInstance3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.33333, 0.666666, 5.91666)
+mesh = ExtResource("4_b4wa3")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_axi6p")
+surface_material_override/1 = SubResource("StandardMaterial3D_ynx2x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.12083, 1.05417, 4.91666)
+shape = SubResource("BoxShape3D_au178")
+
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+transform = Transform3D(1.2, 0, 6.36161e-14, 0, 0.42, 0, -7.63393e-14, 0, 1, -6.66667, 0.916663, 3.66666)
+texture_filter = 2
+texture = ExtResource("3_0a1nf")
+
+[node name="Table" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, 1.06066, 6.58333, 1.09167, -6.25)
+
+[node name="Table2" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.16667, 1.09167, -1.25)
+
+[node name="Table3" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, 1.36763, 1.09167, -4.8704)
+
+[node name="Table4" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, -5.28429, 1.09167, -2.1296)
+
+[node name="Table5" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.83333, 1.09167, -0.166666)
+
+[node name="Table7" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, -1.54904, 1.09167, 1.8796)
+
+[node name="Table8" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, 1.04904, 1.09167, 4.8704)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.21364, -2.33333, 2.99695)
+shape = SubResource("BoxShape3D_rldls")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D2"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.817803, -2.33333, 6.80457)
+shape = SubResource("BoxShape3D_rldls")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D3"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -17.9208, -2.33333, -1.59543)
+shape = SubResource("BoxShape3D_rldls")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MenuScene/SubViewportContainer"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MenuScene"]
+environment = SubResource("Environment_yp84m")
+
+[node name="MainMenu" parent="." instance=ExtResource("1_ecwnw")]
+game_scene = ExtResource("2_01p5o")
+
+[node name="Label" parent="MainMenu" index="0"]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 12.0
+offset_top = 17.0
+offset_right = 90.0
+offset_bottom = 88.0
+grow_horizontal = 1
+text = "Saloon
+Brawl"
+label_settings = SubResource("LabelSettings_ef7lh")
+horizontal_alignment = 1
+
+[node name="Button" parent="MainMenu" index="1"]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 16.0
+offset_top = -19.0
+offset_right = 57.0
+offset_bottom = 12.0
+grow_horizontal = 1
+theme = SubResource("Theme_qejlj")
+
+[node name="Button2" parent="MainMenu" index="2"]
+anchors_preset = 2
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -89.0
+offset_right = 58.0
+offset_bottom = -58.0
+grow_horizontal = 1
+grow_vertical = 0
+theme = SubResource("Theme_qejlj")
+
+[node name="Label2" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -20.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "A game by Lucas-Code and Viylouu"
+label_settings = SubResource("LabelSettings_dhcoo")
+
+[node name="Label3" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -32.0
+offset_right = 56.0
+offset_bottom = -15.0
+grow_vertical = 0
+text = "Volume"
+label_settings = SubResource("LabelSettings_6dmq1")
+
+[node name="HSlider" type="HSlider" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 83.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("8_o2u86")
+bus_name = "Master"
+
+[editable path="MenuScene/SubViewportContainer/SubViewport/Map/Table"]
+[editable path="MainMenu"]

@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgaho2coqfdw"]
+
+[ext_resource type="Script" uid="uid://c4t70578fadv7" path="res://Src/Levels/pause.gd" id="1_a76y0"]
+[ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="2_fnd3j"]
+[ext_resource type="Script" uid="uid://beimqbwm8cqvi" path="res://Src/UI/Scripts/volume_slider.gd" id="3_npxn5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eldpd"]
+font = ExtResource("2_fnd3j")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcn0n"]
+font = ExtResource("2_fnd3j")
+font_size = 12
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_a76y0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -21.0
+offset_right = 41.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_eldpd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = 18.5
+offset_right = 15.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_lcn0n")
+
+[node name="HSlider" type="HSlider" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = 35.0
+offset_right = 41.5
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("3_npxn5")
+bus_name = "Master"
