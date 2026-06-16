@@ -1,53 +1,190 @@
-[gd_scene format=3 uid="uid://d6ltsuufe12g"]
+[gd_scene format=4 uid="uid://d6ltsuufe12g"]
 
 [ext_resource type="Script" uid="uid://ba5d5tgj5vkkn" path="res://Src/Player/player.gd" id="1_vlmqt"]
 [ext_resource type="Script" uid="uid://cpbb2nveqwj7g" path="res://Src/Player/damage_component.gd" id="2_dlxix"]
 [ext_resource type="Script" uid="uid://8tmb1lxd6mmn" path="res://Src/Components/3DCamera.gd" id="2_yinyk"]
-[ext_resource type="PackedScene" uid="uid://dpt3tuqi78ocu" path="res://Assets/Models/arms.glb" id="3_3f5n7"]
-[ext_resource type="Shader" uid="uid://4h4qgeuev1qq" path="res://Assets/Shaders/ps1.gdshader" id="3_7u8vc"]
 [ext_resource type="FastNoiseLite" uid="uid://bde22k3isqvhl" path="res://Assets/DefaultCameraShakeNoise.tres" id="3_c8wu2"]
 [ext_resource type="Script" uid="uid://bs47hqtbmhe1s" path="res://Src/Components/health_component.gd" id="4_euvb2"]
-[ext_resource type="Texture2D" uid="uid://csyhmd2q1umjw" path="res://Assets/Textures/arm.png" id="6_h71qb"]
+[ext_resource type="Texture2D" uid="uid://gfsi7m8scyh5" path="res://Assets/Models/arms_arm.png" id="4_ny17j"]
+[ext_resource type="Animation" uid="uid://dd2eb8qsn0a0h" path="res://Assets/Models/punch.res" id="5_h71qb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fxiou"]
 radius = 0.25
 height = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jta67"]
-render_priority = 0
-shader = ExtResource("3_7u8vc")
-shader_parameter/affine_mapping = false
-shader_parameter/albedo = ExtResource("6_h71qb")
-shader_parameter/alpha_scissor = 0.5
-shader_parameter/jitter = 0.5
-shader_parameter/resolution = Vector2i(320, 240)
+[sub_resource type="Environment" id="Environment_35oun"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dpjcl"]
-size = Vector3(0.75, 2.3, 0.2)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkgdi"]
+resource_name = "Material"
+cull_mode = 2
+albedo_texture = ExtResource("4_ny17j")
+roughness = 0.5
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cmrw8"]
-animation = &"Punch"
+[sub_resource type="ArrayMesh" id="ArrayMesh_xn6gr"]
+resource_name = "arms_Cube_001"
+_surfaces = [{
+"aabb": AABB(-2.5, -0.5, -6.024002, 5, 1, 6.524002),
+"attribute_data": PackedByteArray("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"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(1.5, -0.5, -2.5, 1, 1.00001, 3.00001), AABB(1.575, -0.425, -6.024002, 0.8499999, 0.85001004, 3.5525498), AABB(1.575, -0.425, -6.024002, 0.8499999, 0.85, 1.0025496), AABB(-2.5, -0.5, -2.5, 1.00001, 1, 3), AABB(-2.425, -0.425, -6.024002, 0.8500099, 0.85, 3.5525398), AABB(-2.425, -0.425, -6.024002, 0.8500099, 0.85, 1.0025496)],
+"format": 34359745559,
+"index_count": 288,
+"index_data": PackedByteArray("AAABAAIAAAACAAMABAAFAAYABAAGAAcACAAJAAoACAAKAAsADAANAA4ADAAOAA8AEAARABIAEAASABMAFAAVABYAFAAWABcAGAAZABoAGAAaABsAHAAdAB4AHAAeAB8AIAAhACIAIAAiACMAJAAlACYAJAAmACcAKAApACoAKAAqACsALAAtAC4ALAAuAC8AMAAxADIAMAAyADMANAA1ADYANAA2ADcAOAA5ADoAOAA6ADsAPAA9AD4APAA+AD8AQABBAEIAQABCAEMARABFAEYARABGAEcASABJAEoASABKAEsATABNAE4ATABOAE8AUABRAFIAUABSAFMAVABVAFYAVABWAFcAWABZAFoAWABaAFsAXABdAF4AXABeAF8AYABhAGIAYABiAGMAZABlAGYAZABmAGcAaABpAGoAaABqAGsAbABtAG4AbABuAG8AcABxAHIAcAByAHMAdAB1AHYAdAB2AHcAeAB5AHoAeAB6AHsAfAB9AH4AfAB+AH8AgACBAIIAgACCAIMAhACFAIYAhACGAIcAiACJAIoAiACKAIsAjACNAI4AjACOAI8AkACRAJIAkACSAJMAlACVAJYAlACWAJcAmACZAJoAmACaAJsAnACdAJ4AnACeAJ8AoAChAKIAoACiAKMApAClAKYApACmAKcAqACpAKoAqACqAKsArACtAK4ArACuAK8AsACxALIAsACyALMAtAC1ALYAtAC2ALcAuAC5ALoAuAC6ALsAvAC9AL4AvAC+AL8A"),
+"material": SubResource("StandardMaterial3D_fkgdi"),
+"name": "Material",
+"primitive": 3,
+"skin_data": PackedByteArray("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"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 192,
+"vertex_data": PackedByteArray("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mpnJv5qZ2b7Sr6DAZBHZv2u6m75oxqfAmpnJv5qZ2T7Sr6DAMzMbwJqZ2T7Sr6DATXcTwGu6mz5oxqfAZBHZv2u6mz5oxqfAZBHZv2u6m75oxqfAmpnJv5qZ2b7Sr6DAmpnJv5qZ2T7Sr6DAZBHZv2u6mz5oxqfA2aYawMo21T6gxMDA2aYawMo21T7T96vA2aYawMo21b7T96vA2aYawMo21b6gxMDA2aYawMo21b7T96vATXcTwGu6m75oxqfAZBHZv2u6m75oxqfATLLKv8o21b7T96vATLLKv8o21T7T96vAZBHZv2u6mz5oxqfATXcTwGu6mz5oxqfA2aYawMo21T7T96vATLLKv8o21b7T96vAZBHZv2u6m75oxqfAZBHZv2u6mz5oxqfATLLKv8o21T7T96vA2aYawMo21b6gxMDATLLKv8o21b6gxMDATLLKv8o21T6gxMDA2aYawMo21T6gxMDA2aYawMo21b6gxMDA2aYawMo21b7T96vATLLKv8o21b7T96vATLLKv8o21b6gxMDATLLKv8o21T6gxMDATLLKv8o21T7T96vA2aYawMo21T7T96vA2aYawMo21T6gxMDATLLKv8o21b6gxMDATLLKv8o21b7T96vATLLKv8o21T7T96vATLLKv8o21T6gxMDAAAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9//////////3//////////f/////////9//////////3///////3//f///////f/9///////9//3///////3//f////3//f/9/////f/9//3////9//3//f////3//f/9/////fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/AAD/f/9///8AAP9//3///wAA/3//f///AAD/f/9//////y2t////v///La3///+///8trf///7///y2t////v////3//f///////f/9///////9//3///////3//f////3//f/9/////f/9//3////9//3//f////3//f/9/////fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+/7sT/f////z/uxP9/////P+7E/3////8/7sT/f////z8trQAA////vy2tAAD///+/La0AAP///78trQAA////vy2t//////+/La3//////78trf//////vy2t//////+/AAAtrf///78AAC2t////vwAALa3///+/AAAtrf///7////9/////v////3////+/////f////7////9/////v/9/EDv///8//38QO////z//fxA7////P/9/EDv///8//3/uxP///z//f+7E////P/9/7sT///8//3/uxP///z8QO/9/////PxA7/3////8/EDv/f////z8QO/9/////P///////f/////////9//////////3//////////f////38AAP///7//fwAA////v/9/AAD///+//38AAP///7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/////f/9/AAD///9//38AAP///3//fwAA////f/9/AAD//////38AAP//////fwAA//////9/AAD//////38AAAAA/3//fwAAAAD/f/9/AAAAAP9//38AAAAA/3//fwAA/3//f/9/AAD/f/9//38AAP9//3//fwAA/3//f/9/AAD/fwAAAAD/P/9/AAAAAP8//38AAAAA/z//fwAAAAD/P/9///////8//3///////z//f///////P/9///////8/////f/9/AAD///9//38AAP///3//fwAA////f/9/AAAAAC2t////vwAALa3///+/AAAtrf///78AAC2t////vwAA/3//fwAAAAD/f/9/AAAAAP9//38AAAAA/3//fwAA/3//f/9/AAD/f/9//38AAP9//3//fwAA/3//f/9/AAD/fwAAAAD/P/9/AAAAAP8//38AAAAA/z//fwAAAAD/P/9///////8//3///////z//f///////P/9///////8/EDv/f////z8QO/9/////PxA7/3////8/EDv/f////z8trQAA////vy2tAAD///+/La0AAP///78trQAA////vy2t//////+/La3//////78trf//////vy2t//////+///8trf///7///y2t////v///La3///+///8trf///78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9/EDv///8//38QO////z//fxA7////P/9/EDv///8//3/uxP///z//f+7E////P/9/7sT///8//3/uxP///z/uxP9/////P+7E/3////8/7sT/f////z/uxP9/////P///////fwAA//////9/AAD//////38AAP//////fwAA/38AAP///7//fwAA////v/9/AAD///+//38AAP///7//f///////v/9///////+//3///////7//f///////v////3////+/////f////7////9/////v////3////+/")
+}]
+blend_shape_mode = 0
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fxnpq"]
-animation = &"Idleanim"
+[sub_resource type="Skin" id="Skin_d2400"]
+resource_name = "Skin"
+bind_count = 7
+bind/0/name = &"Root"
+bind/0/bone = -1
+bind/0/pose = Transform3D(-1, 0, 0, 0, 1, -4.371139e-08, 0, -4.371139e-08, -1, 0, 0, 0)
+bind/1/name = &"arm.001.r"
+bind/1/bone = -1
+bind/1/pose = Transform3D(1, -1.509958e-07, 3.2898588e-15, 3.3103773e-15, 1.3588775e-10, -1, 1.509958e-07, 1, -2.178775e-08, -2, 0.393234, -3.1061273e-07)
+bind/2/name = &"arm.002.r"
+bind/2/bone = -1
+bind/2/pose = Transform3D(1, -2.3841858e-07, 4.104999e-15, 3.3103776e-15, 4.706024e-09, -1, 2.3841858e-07, 1, -1.7217614e-08, -2, -2.5974774, -5.232245e-07)
+bind/3/name = &"arm.003.r"
+bind/3/bone = -1
+bind/3/pose = Transform3D(1, -2.3841858e-07, 1.7372681e-14, 3.3103776e-15, -5.0942667e-08, -1, 2.3841858e-07, 1, -7.286631e-08, -2, -5.3615236, -8.691766e-07)
+bind/4/name = &"arm.001.l"
+bind/4/bone = -1
+bind/4/pose = Transform3D(1, 1.509958e-07, -3.2898588e-15, -3.3103773e-15, 1.3588775e-10, -1, -1.509958e-07, 1, -2.178775e-08, 2, 0.393234, -3.1061273e-07)
+bind/5/name = &"arm.002.l"
+bind/5/bone = -1
+bind/5/pose = Transform3D(1, 2.3841858e-07, -4.104999e-15, -3.3103776e-15, 4.706024e-09, -1, -2.3841858e-07, 1, -1.7217614e-08, 2, -2.5974774, -5.232245e-07)
+bind/6/name = &"arm.003.l"
+bind/6/bone = -1
+bind/6/pose = Transform3D(1, 2.3841858e-07, -1.7372681e-14, -3.3103776e-15, -5.0942667e-08, -1, -2.3841858e-07, 1, -7.286631e-08, 2, -5.3615236, -8.691766e-07)
 
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nll5o"]
-filter_enabled = true
-filters = ["Skeleton3D:arm.001.r", "Skeleton3D:arm.002.r"]
+[sub_resource type="Animation" id="Animation_q6p1h"]
+resource_name = "Idleanim"
+length = 5.0001
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:Root")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2, 3.278354e-08, -0.75)
+tracks/1/type = "position_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:arm.001.r")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -3, 8.6211145e-09, -0.393234)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = true
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:arm.001.r")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.1610707, -0.6216099, -0.74915093, 0.1625739)
+tracks/3/type = "scale_3d"
+tracks/3/imported = true
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:arm.001.r")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.99999994, 0.99999994, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = true
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:arm.002.r")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0.41773883, -0.17540054, -0.0013054598, 0.8914748)
+tracks/5/type = "position_3d"
+tracks/5/imported = true
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:arm.001.l")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 3.0000002, -0.48185095, -0.39323398)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = true
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton3D:arm.001.l")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.088501595, 0.6430861, 0.75356036, 0.10370519)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = true
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton3D:arm.002.l")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.46018982, 0.12910807, -8.906264e-08, 0.87838286)
+tracks/8/type = "position_3d"
+tracks/8/imported = true
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton3D:Armature")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 2, 0, 0, 0.20000002, 1, 2, -0.0009622395, 0, 0.3, 1, 2, -0.0034349035, 0, 0.40000004, 1, 2, -0.007622104, 0, 0.5, 1, 2, -0.013383877, 0, 0.6, 1, 2, -0.020965159, 0, 0.7, 1, 2, -0.029701127, 0, 0.8000001, 1, 2, -0.039451826, 0, 0.90000004, 1, 2, -0.050077286, 0, 1, 1, 2, -0.06143754, 0, 1.1, 1, 2, -0.07349761, 0, 1.2, 1, 2, -0.08587258, 0, 1.5, 1, 2, -0.123487405, 0, 1.6000001, 1, 2, -0.13554747, 0, 1.7, 1, 2, -0.14708267, 0, 1.8000001, 1, 2, -0.15795307, 0, 1.9, 1, 2, -0.16801868, 0, 2, 1, 2, -0.1771395, 0, 2.1, 1, 2, -0.1847208, 0, 2.2, 1, 2, -0.19093744, 0, 2.3, 1, 2, -0.1956495, 0, 2.4, 1, 2, -0.19871701, 0, 2.5, 1, 2, -0.2, 0, 2.6, 1, 2, -0.19884, 0, 2.6999998, 1, 2, -0.19606002, 0, 2.8, 1, 2, -0.19178, 0, 2.8999999, 1, 2, -0.18612, 0, 3, 1, 2, -0.1792, 0, 3.1, 1, 2, -0.17084, 0, 3.2000003, 1, 2, -0.16157998, 0, 3.3000002, 1, 2, -0.15154, 0, 3.4, 1, 2, -0.14083998, 0, 3.5, 1, 2, -0.12959999, 0, 3.6000001, 1, 2, -0.11787998, 0, 3.8999999, 1, 2, -0.08212, 0, 4, 1, 2, -0.0704, 0, 4.1, 1, 2, -0.059159987, 0, 4.2, 1, 2, -0.048459984, 0, 4.2999997, 1, 2, -0.03841999, 0, 4.4, 1, 2, -0.029159974, 0, 4.5, 1, 2, -0.020799994, 0, 4.6, 1, 2, -0.013880002, 0, 4.7000003, 1, 2, -0.00821998, 0, 4.8, 1, 2, -0.003939974, 0, 4.9, 1, 2, -0.0011599779, 0, 5, 1, 2, 0, 0)
 
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3wkuj"]
+[sub_resource type="Animation" id="Animation_ny17j"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:arm.001.r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -5.3385087e-08, 0.7071068, 0.7071068, -5.3385087e-08)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:arm.002.r")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 2.2850681e-09, 4.371139e-08, 4.449192e-16, 1)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:arm.001.l")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.08850159, 0.64308596, 0.7535603, 0.103705175)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:arm.002.l")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0.46018982, 0.12910807, -8.906264e-08, 0.87838286)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:Armature")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 2, 0, 0)
+tracks/5/type = "position_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:Root")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, -2, 0, 0)
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ne4r8"]
-nodes/output/position = Vector2(460, 120)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_cmrw8")
-nodes/Animation/position = Vector2(-280, 260)
-nodes/Idleanim/node = SubResource("AnimationNodeAnimation_fxnpq")
-nodes/Idleanim/position = Vector2(-300, 120)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_nll5o")
-nodes/OneShot/position = Vector2(20, 120)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3wkuj")
-nodes/TimeScale/position = Vector2(-140, 220)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Idleanim", &"OneShot", 1, &"TimeScale", &"TimeScale", 0, &"Animation"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmrmy"]
+_data = {
+&"Idleanim": SubResource("Animation_q6p1h"),
+&"Punch": ExtResource("5_h71qb"),
+&"RESET": SubResource("Animation_ny17j")
+}
 
 [node name="Player" type="CharacterBody3D" unique_id=510045457]
 collision_mask = 11
@@ -88,58 +225,82 @@ render_target_update_mode = 4
 [node name="armcam" type="Camera3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport" unique_id=694635431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 cull_mask = 1047554
+environment = SubResource("Environment_35oun")
 
-[node name="arms" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam" unique_id=1451562834 instance=ExtResource("3_3f5n7")]
+[node name="arms" type="Node3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam" unique_id=738055544]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.15, 0)
 
-[node name="Skeleton3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" index="0"]
-bones/0/position = Vector3(2, -0.014182413, 0)
-bones/1/position = Vector3(-2, 3.278354e-08, -0.75)
+[node name="Skeleton3D" type="Skeleton3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=396616543]
+bones/0/name = "Armature"
+bones/0/parent = -1
+bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 2, 0, 0)
+bones/0/enabled = true
+bones/0/position = Vector3(2, 0, 0)
+bones/0/rotation = Quaternion(-0.70710677, 0, 0, 0.70710677)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/name = "Root"
+bones/1/parent = 0
+bones/1/rest = Transform3D(-1, 0, 0, 0, 0, 1, 0, 1, 0, -2, 0, 0)
+bones/1/enabled = true
+bones/1/position = Vector3(-2, 0, 0)
+bones/1/rotation = Quaternion(0, 0.70710677, 0.70710677, 0)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/name = "arm.001.r"
+bones/2/parent = 1
+bones/2/rest = Transform3D(-1, 0, -1.509958e-07, -1.509958e-07, 0, 1, 0, 1, 0, -2, 0, -0.393234)
+bones/2/enabled = true
 bones/2/position = Vector3(-3, 8.6211145e-09, -0.393234)
-bones/2/rotation = Quaternion(0.16107069, 0.62160987, 0.74915093, -0.16257389)
+bones/2/rotation = Quaternion(-5.3385094e-08, 0.7071068, 0.7071068, -5.3385094e-08)
 bones/2/scale = Vector3(0.99999994, 0.99999994, 1)
-bones/3/rotation = Quaternion(0.41773883, -0.17540054, -0.0013054598, 0.8914748)
+bones/3/name = "arm.002.r"
+bones/3/parent = 2
+bones/3/rest = Transform3D(1, -6.900713e-16, 8.742278e-08, 1.0896053e-15, 1, -4.5701363e-09, -8.742278e-08, 4.5701363e-09, 1, -8.65974e-15, 2.9907115, 4.9637062e-08)
+bones/3/enabled = true
+bones/3/position = Vector3(-8.65974e-15, 2.9907115, 4.9637062e-08)
+bones/3/rotation = Quaternion(2.2850681e-09, 4.371139e-08, 4.449192e-16, 1)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/name = "arm.003.r"
+bones/4/parent = 3
+bones/4/rest = Transform3D(1, 1.3267682e-14, 3.9563434e-22, -1.3267682e-14, 1, 5.564869e-08, 3.4269478e-22, -5.564869e-08, 1, -2.2426505e-14, 2.7640462, 4.759029e-08)
+bones/4/enabled = true
+bones/4/position = Vector3(-2.2426505e-14, 2.7640462, 4.759029e-08)
+bones/4/rotation = Quaternion(-2.7824345e-08, 1.323489e-23, -6.633841e-15, 1)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/name = "arm.001.l"
+bones/5/parent = 1
+bones/5/rest = Transform3D(-1, 0, 1.509958e-07, 1.509958e-07, 0, 1, 0, 1, 0, 2, 0, -0.393234)
+bones/5/enabled = true
 bones/5/position = Vector3(3.0000002, -0.48185095, -0.39323398)
-bones/5/rotation = Quaternion(-0.0885016, 0.643086, 0.75356036, 0.10370519)
+bones/5/rotation = Quaternion(-0.08850159, 0.64308596, 0.7535603, 0.103705175)
+bones/5/scale = Vector3(1.0000001, 1, 1)
+bones/6/name = "arm.002.l"
+bones/6/parent = 5
+bones/6/rest = Transform3D(1, 6.900713e-16, -8.742278e-08, -1.0896053e-15, 1, -4.5701363e-09, 8.742278e-08, 4.5701363e-09, 1, 8.65974e-15, 2.9907115, 4.9637062e-08)
+bones/6/enabled = true
+bones/6/position = Vector3(8.65974e-15, 2.9907115, 4.9637062e-08)
 bones/6/rotation = Quaternion(0.46018982, 0.12910807, -8.906264e-08, 0.87838286)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/name = "arm.003.l"
+bones/7/parent = 6
+bones/7/rest = Transform3D(1, -1.3267682e-14, -3.9563434e-22, 1.3267682e-14, 1, 5.564869e-08, -3.4269478e-22, -5.564869e-08, 1, 2.2426505e-14, 2.7640462, 4.759029e-08)
+bones/7/enabled = true
+bones/7/position = Vector3(2.2426505e-14, 2.7640462, 4.759029e-08)
+bones/7/rotation = Quaternion(-2.7824345e-08, -1.323489e-23, 6.633841e-15, 1)
+bones/7/scale = Vector3(1, 1, 1)
 
-[node name="Cube" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" index="0"]
+[node name="Cube" type="MeshInstance3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" unique_id=1513386700]
 layers = 2
-surface_material_override/0 = SubResource("ShaderMaterial_jta67")
+mesh = SubResource("ArrayMesh_xn6gr")
+skin = SubResource("Skin_d2400")
 
-[node name="fistr" type="BoneAttachment3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" index="1" unique_id=823219652]
-transform = Transform3D(0.8940152, -0.44726413, 0.026299398, 0.29185227, 0.6258966, 0.7232398, -0.3399399, -0.6389117, 0.69009596, 0.43637085, 0.4444189, -4.001545)
-bone_name = "arm.003.r"
-bone_idx = 4
-
-[node name="Area3D" type="Area3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr" unique_id=1372400611]
-transform = Transform3D(0.894015, 0.291852, -0.33994, -0.447264, 0.625897, -0.638912, 0.0262994, 0.72324, 0.690096, -1.88425, -2.6485, 2.4183)
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr/Area3D" unique_id=65567709]
-transform = Transform3D(0.893824, -0.447168, 0.0262956, 0.291815, 0.625896, 0.723242, -0.33994, -0.638912, 0.690002, 1.08627, -0.237261, -2.75751)
-shape = SubResource("BoxShape3D_dpjcl")
-
-[node name="Slot" type="Node3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr" unique_id=1172062179]
-
-[node name="AnimationPlayer" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=848684139]
+libraries/ = SubResource("AnimationLibrary_pmrmy")
 speed_scale = 3.0
 
-[node name="AnimationTree" type="AnimationTree" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=1583798137]
-tree_root = SubResource("AnimationNodeBlendTree_ne4r8")
-anim_player = NodePath("../AnimationPlayer")
-parameters/OneShot/active = false
-parameters/OneShot/internal_active = false
-parameters/OneShot/request = 0
-parameters/TimeScale/scale = 3.0
-
-[node name="DamageComponent" type="Node" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=2022036486 node_paths=PackedStringArray("hitboxes")]
+[node name="DamageComponent" type="Node" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=2022036486 node_paths=PackedStringArray("hurt_ray")]
 script = ExtResource("2_dlxix")
 player = true
-Has_Hitbox = true
-hitboxes = [NodePath("../Skeleton3D/fistr/Area3D")]
+hurt_ray = NodePath("../../../../../../Attackray")
 
 [node name="ColorRect" type="ColorRect" parent="Neck/Camera3D/CanvasLayer" unique_id=1232329260]
 visible = false
@@ -151,6 +312,10 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0.207843)
 
+[node name="Attackray" type="RayCast3D" parent="Neck/Camera3D" unique_id=894128683]
+target_position = Vector3(0, 0, -1)
+collision_mask = 3
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1709134381]
 script = ExtResource("4_euvb2")
 max_health = 5
@@ -158,7 +323,9 @@ max_health = 5
 [node name="Timer" type="Timer" parent="." unique_id=1621867952]
 wait_time = 0.35
 
+[connection signal="animation_finished" from="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="attacked" from="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent" to="." method="_on_damage_component_attacked"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_die"]
+[connection signal="health_low" from="HealthComponent" to="." method="_on_health_component_low_health"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
-[editable path="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms"]

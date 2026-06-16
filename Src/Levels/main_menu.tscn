@@ -4,9 +4,18 @@
 [ext_resource type="PackedScene" uid="uid://cf8njnp41owya" path="res://Src/Levels/test_map.tscn" id="2_8wsh4"]
 [ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="3_ivmke"]
 [ext_resource type="AudioStream" uid="uid://oans2m5207xb" path="res://Assets/Music/GLORGLUEPINBACNTOECDPOP.wav" id="3_o7wo5"]
+[ext_resource type="Script" uid="uid://beimqbwm8cqvi" path="res://Src/UI/Scripts/volume_slider.gd" id="5_hi0n7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yd56w"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4dys"]
+font = ExtResource("3_ivmke")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_00x2x"]
+font = ExtResource("3_ivmke")
+font_size = 12
 
 [node name="MainMenu" type="Control" unique_id=1904510589]
 layout_mode = 3
@@ -67,6 +76,49 @@ text = "Quit"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=65604917]
 stream = ExtResource("3_o7wo5")
 autoplay = true
+
+[node name="Label2" type="Label" parent="." unique_id=855900893]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -20.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "A game by Lucas-Code and Viylouu"
+label_settings = SubResource("LabelSettings_l4dys")
+
+[node name="Label3" type="Label" parent="." unique_id=884107488]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -32.0
+offset_right = 56.0
+offset_bottom = -15.0
+grow_vertical = 0
+text = "Volume"
+label_settings = SubResource("LabelSettings_00x2x")
+
+[node name="HSlider" type="HSlider" parent="." unique_id=548634663]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 83.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
+script = ExtResource("5_hi0n7")
+bus_name = "Master"
 
 [connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_button_2_pressed"]

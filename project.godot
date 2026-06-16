@@ -36,9 +36,9 @@ gdscript/warnings/inferred_declaration=1
 
 window/size/viewport_width=320
 window/size/viewport_height=240
-window/size/mode=2
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 window/quality/screen_space_aa=0
 window/quality/msaa_3d=0

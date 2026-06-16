@@ -6,14 +6,14 @@ const SENSITIVITY: float = 0.004
 @onready var head: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera3D
 @onready var hurter: DamageComponent = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent
-@onready var animtree: AnimationTree = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationTree
+@onready var animplayer: AnimationPlayer = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationPlayer
 @onready var armcam: Camera3D = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam
 
 var canpunch: bool = true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	animtree.set("parameters/OneShot/active",true)
+	animplayer.play("Idleanim")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -32,10 +32,7 @@ func _physics_process(delta: float) -> void:
 		canpunch = false
 		AudioManager.play("swing",randf_range(0.9,1.1))
 		$Timer.start()
-		hurter.damaging = true
-		animtree.set("parameters/OneShot/request",AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		await get_tree().create_timer(0.27).timeout
-		hurter.damaging = false
+		animplayer.play("Punch")
 	
 	var look_dir: float = Input.get_axis("lookright","lookleft")
 	head.rotate_y(look_dir * 0.1)
@@ -71,3 +68,7 @@ func _on_timer_timeout() -> void:
 
 func _on_health_component_low_health() -> void:
 	$Neck/Camera3D/CanvasLayer/ColorRect.visible = true
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Punch":
+		animplayer.play("Idleanim")
