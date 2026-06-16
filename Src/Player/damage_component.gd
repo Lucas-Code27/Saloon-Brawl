@@ -22,7 +22,7 @@ func _ready() -> void:
 func _on_hit(body:Node3D) -> void:
 	if damaging and body.has_node("HealthComponent"):
 		var hpcomp:HealthComponent = body.get_node("HealthComponent")
-		hpcomp.Hurt(damage)
+		hpcomp.hurt(damage)
 		if player:
 			AudioManager.play("hit",randf_range(0.9,1.1))
 		else:

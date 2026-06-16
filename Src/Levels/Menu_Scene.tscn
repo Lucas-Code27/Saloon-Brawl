@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dinmvdo6wm3cs"]
+[gd_scene format=3 uid="uid://dinmvdo6wm3cs"]
 
 [ext_resource type="Texture2D" uid="uid://dao1ji2khj0n5" path="res://Assets/Textures/wall.png" id="1_77tio"]
 [ext_resource type="PackedScene" uid="uid://d1r18ke1v3ivi" path="res://Src/Levels/main_menu.tscn" id="1_ecwnw"]
@@ -87,192 +87,193 @@ font_size = 12
 font = ExtResource("3_i6fmt")
 font_size = 12
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=902083291]
 
-[node name="MenuScene" type="Node3D" parent="."]
+[node name="MenuScene" type="Node3D" parent="." unique_id=853123629]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="MenuScene"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MenuScene" unique_id=587437145]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="MenuScene/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="MenuScene/SubViewportContainer" unique_id=1597822755]
 handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="MenuScene/SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="MenuScene/SubViewportContainer/SubViewport" unique_id=480540166]
 transform = Transform3D(0.965926, -0.0669873, 0.25, 0, 0.965926, 0.258819, -0.258819, -0.25, 0.933013, 0, 0, 0)
 
-[node name="Map" type="Node3D" parent="MenuScene/SubViewportContainer/SubViewport"]
+[node name="Map" type="Node3D" parent="MenuScene/SubViewportContainer/SubViewport" unique_id=939842298]
 transform = Transform3D(0.519615, 0, -0.3, 0, 0.6, 0, 0.3, 0, 0.519615, -1.65, -2.75, -5.05)
 
-[node name="LeftWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="LeftWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=563629785]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.08616e-07, 3, -7.45)
 use_collision = true
 size = Vector3(0.1, 5, 15)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="RightWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="RightWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=797879261]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.08616e-07, 3, 7.45)
 use_collision = true
 size = Vector3(0.1, 5, 15)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="FrontWall3" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="FrontWall3" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1422602339]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 4.275, 3.3)
 size = Vector3(0.05, 2.45, 1.5)
 material = SubResource("StandardMaterial3D_4dpn8")
 
-[node name="Roof" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="Roof" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=752867989]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.075, 6, 0)
 size = Vector3(21.15, 1, 15)
 material = SubResource("StandardMaterial3D_5gk68")
 
-[node name="FrontDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="FrontDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1355111905]
 collision_layer = 8
 collision_mask = 0
 
-[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor"]
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor" unique_id=859734925]
 transform = Transform3D(-5.28907e-08, 0, -1, 0, 1, 0, 1.21, 0, -4.37114e-08, 7.41667, 1.33333, 3.33333)
 texture_filter = 2
 texture = ExtResource("3_0a1nf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/FrontDoor" unique_id=1368400612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39216, 1.78333, 3.3)
 shape = SubResource("BoxShape3D_0ux4w")
 
-[node name="BackDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="BackDoor" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=95152306]
 collision_layer = 8
 collision_mask = 0
 
-[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor"]
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor" unique_id=1080750432]
 transform = Transform3D(-5.28907e-08, 0, -1, 0, 1, 0, 1.21, 0, -4.37114e-08, -7.5, 1.33333, -6.58334)
 texture_filter = 2
 texture = ExtResource("3_0a1nf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/BackDoor" unique_id=517893437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42501, 1.78333, -6.7)
 shape = SubResource("BoxShape3D_0ux4w")
 
-[node name="BackDoorTop" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="BackDoorTop" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=726199608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.46716, 4.275, -6.6)
 size = Vector3(0.001, 2.45, 1.6)
 material = SubResource("StandardMaterial3D_4dpn8")
 
-[node name="BackRoomBack" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="BackRoomBack" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=2087610532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6167, 3, -2.23517e-07)
 size = Vector3(0.1, 5, 15)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="LeftWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="LeftWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=844220182]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.4917, 3, -7.45)
 size = Vector3(0.1, 5, 6.15)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="Porch" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="Porch" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=773336731]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 0)
 use_collision = true
 size = Vector3(2, 1, 15)
 material = SubResource("StandardMaterial3D_ouedl")
 
-[node name="Floor" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="Floor" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=843726520]
 use_collision = true
 size = Vector3(15, 1, 15)
 material = SubResource("StandardMaterial3D_5gk68")
 
-[node name="Floor2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="Floor2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=711336367]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.575, 0, 0)
 use_collision = true
 size = Vector3(6.15, 1, 15)
 material = SubResource("StandardMaterial3D_5gk68")
 
-[node name="FrontWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="FrontWall2" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1551370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, 5.775)
 use_collision = true
 size = Vector3(0.05, 5, 3.45)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="BackWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="BackWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1151677126]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -7.475, 3, 0.85)
 use_collision = true
 size = Vector3(0.05, 5, 13.3)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="FrontWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="FrontWall" type="CSGBox3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1960838855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
 use_collision = true
 size = Vector3(0.05, 5, 10.05)
 material = SubResource("StandardMaterial3D_60i2j")
 
-[node name="Counter" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="Counter" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=34964248]
 
-[node name="counter" type="MeshInstance3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+[node name="counter" type="MeshInstance3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter" unique_id=974099881]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.33333, 0.666666, 5.91666)
 mesh = ExtResource("4_b4wa3")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_axi6p")
 surface_material_override/1 = SubResource("StandardMaterial3D_ynx2x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter" unique_id=594052466]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.12083, 1.05417, 4.91666)
 shape = SubResource("BoxShape3D_au178")
 
-[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter"]
+[node name="Sprite3D" type="Sprite3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/Counter" unique_id=52293744]
 transform = Transform3D(1.2, 0, 6.36161e-14, 0, 0.42, 0, -7.63393e-14, 0, 1, -6.66667, 0.916663, 3.66666)
 texture_filter = 2
 texture = ExtResource("3_0a1nf")
 
-[node name="Table" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=114861347 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, 1.06066, 6.58333, 1.09167, -6.25)
 
-[node name="Table2" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table2" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=581174303 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.16667, 1.09167, -1.25)
 
-[node name="Table3" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table3" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1188657858 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, 1.36763, 1.09167, -4.8704)
 
-[node name="Table4" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table4" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1622606940 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, -5.28429, 1.09167, -2.1296)
 
-[node name="Table5" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table5" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=418795059 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.83333, 1.09167, -0.166666)
 
-[node name="Table7" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table7" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1940264553 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, -1.54904, 1.09167, 1.8796)
 
-[node name="Table8" parent="MenuScene/SubViewportContainer/SubViewport/Map" instance=ExtResource("5_mhx0h")]
+[node name="Table8" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1412634771 instance=ExtResource("5_mhx0h")]
 transform = Transform3D(0.75, 0, 1.29904, 0, 1.5, 0, -1.29904, 0, 0.75, 1.04904, 1.09167, 4.8704)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=328136114]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D" unique_id=282524356]
 transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.21364, -2.33333, 2.99695)
 shape = SubResource("BoxShape3D_rldls")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1982689089]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D2" unique_id=1384221308]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 0.817803, -2.33333, 6.80457)
 shape = SubResource("BoxShape3D_rldls")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map"]
+[node name="StaticBody3D3" type="StaticBody3D" parent="MenuScene/SubViewportContainer/SubViewport/Map" unique_id=1731590057]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.425, 3, -2.475)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MenuScene/SubViewportContainer/SubViewport/Map/StaticBody3D3" unique_id=1039186208]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -17.9208, -2.33333, -1.59543)
 shape = SubResource("BoxShape3D_rldls")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MenuScene/SubViewportContainer"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MenuScene/SubViewportContainer" unique_id=1353043982]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="MenuScene"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MenuScene" unique_id=537235599]
 environment = SubResource("Environment_yp84m")
 
-[node name="MainMenu" parent="." instance=ExtResource("1_ecwnw")]
+[node name="MainMenu" parent="." unique_id=1971823505 instance=ExtResource("1_ecwnw")]
 game_scene = ExtResource("2_01p5o")
 
 [node name="Label" parent="MainMenu" index="0"]
@@ -314,7 +315,7 @@ grow_horizontal = 1
 grow_vertical = 0
 theme = SubResource("Theme_qejlj")
 
-[node name="Label2" type="Label" parent="MainMenu"]
+[node name="Label2" type="Label" parent="MainMenu" unique_id=909391662]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -330,7 +331,7 @@ grow_vertical = 0
 text = "A game by Lucas-Code and Viylouu"
 label_settings = SubResource("LabelSettings_dhcoo")
 
-[node name="Label3" type="Label" parent="MainMenu"]
+[node name="Label3" type="Label" parent="MainMenu" unique_id=895238742]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -343,7 +344,7 @@ grow_vertical = 0
 text = "Volume"
 label_settings = SubResource("LabelSettings_6dmq1")
 
-[node name="HSlider" type="HSlider" parent="MainMenu"]
+[node name="HSlider" type="HSlider" parent="MainMenu" unique_id=1704319892]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

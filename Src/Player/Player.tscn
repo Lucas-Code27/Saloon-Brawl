@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://d6ltsuufe12g"]
+[gd_scene format=3 uid="uid://d6ltsuufe12g"]
 
 [ext_resource type="Script" uid="uid://ba5d5tgj5vkkn" path="res://Src/Player/player.gd" id="1_vlmqt"]
 [ext_resource type="Script" uid="uid://cpbb2nveqwj7g" path="res://Src/Player/damage_component.gd" id="2_dlxix"]
@@ -38,6 +38,7 @@ filters = ["Skeleton3D:arm.001.r", "Skeleton3D:arm.002.r"]
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_3wkuj"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ne4r8"]
+nodes/output/position = Vector2(460, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_cmrw8")
 nodes/Animation/position = Vector2(-280, 260)
 nodes/Idleanim/node = SubResource("AnimationNodeAnimation_fxnpq")
@@ -46,20 +47,19 @@ nodes/OneShot/node = SubResource("AnimationNodeOneShot_nll5o")
 nodes/OneShot/position = Vector2(20, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_3wkuj")
 nodes/TimeScale/position = Vector2(-140, 220)
-nodes/output/position = Vector2(460, 120)
-node_connections = [&"OneShot", 0, &"Idleanim", &"OneShot", 1, &"TimeScale", &"TimeScale", 0, &"Animation", &"output", 0, &"OneShot"]
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Idleanim", &"OneShot", 1, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=510045457]
 collision_mask = 11
 script = ExtResource("1_vlmqt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=155370490]
 shape = SubResource("CapsuleShape3D_fxiou")
 
-[node name="Neck" type="Node3D" parent="."]
+[node name="Neck" type="Node3D" parent="." unique_id=371941538]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Neck"]
+[node name="Camera3D" type="Camera3D" parent="Neck" unique_id=392344228]
 cull_mask = 1048573
 script = ExtResource("2_yinyk")
 shake_decay = 2.0
@@ -68,9 +68,9 @@ noise_speed = 100.0
 max_x = 20.0
 max_y = 20.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Neck/Camera3D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Neck/Camera3D" unique_id=684099599]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Neck/Camera3D/CanvasLayer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Neck/Camera3D/CanvasLayer" unique_id=272961360]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,55 +78,56 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer" unique_id=712366355]
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4293918722
 size = Vector2i(320, 240)
 render_target_update_mode = 4
 
-[node name="armcam" type="Camera3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport"]
+[node name="armcam" type="Camera3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport" unique_id=694635431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 cull_mask = 1047554
 
-[node name="arms" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam" instance=ExtResource("3_3f5n7")]
+[node name="arms" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam" unique_id=1451562834 instance=ExtResource("3_3f5n7")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.15, 0)
 
 [node name="Skeleton3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" index="0"]
-bones/0/position = Vector3(2, -0.0459383, 0)
-bones/1/position = Vector3(-2, 3.27835e-08, -0.75)
-bones/2/position = Vector3(-3, 8.62111e-09, -0.393234)
-bones/2/rotation = Quaternion(0.161071, 0.62161, 0.749151, -0.162574)
-bones/3/rotation = Quaternion(0.417739, -0.175401, -0.00130546, 0.891475)
-bones/5/position = Vector3(3, -0.481851, -0.393234)
-bones/5/rotation = Quaternion(-0.0885016, 0.643086, 0.75356, 0.103705)
-bones/6/rotation = Quaternion(0.46019, 0.129108, -8.90626e-08, 0.878383)
+bones/0/position = Vector3(2, -0.014182413, 0)
+bones/1/position = Vector3(-2, 3.278354e-08, -0.75)
+bones/2/position = Vector3(-3, 8.6211145e-09, -0.393234)
+bones/2/rotation = Quaternion(0.16107069, 0.62160987, 0.74915093, -0.16257389)
+bones/2/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/3/rotation = Quaternion(0.41773883, -0.17540054, -0.0013054598, 0.8914748)
+bones/5/position = Vector3(3.0000002, -0.48185095, -0.39323398)
+bones/5/rotation = Quaternion(-0.0885016, 0.643086, 0.75356036, 0.10370519)
+bones/6/rotation = Quaternion(0.46018982, 0.12910807, -8.906264e-08, 0.87838286)
 
 [node name="Cube" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("ShaderMaterial_jta67")
 
-[node name="fistr" type="BoneAttachment3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" index="1"]
-transform = Transform3D(0.894015, -0.447264, 0.0262994, 0.291852, 0.625897, 0.72324, -0.33994, -0.638912, 0.690096, 0.436371, 0.412663, -4.00154)
+[node name="fistr" type="BoneAttachment3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D" index="1" unique_id=823219652]
+transform = Transform3D(0.8940152, -0.44726413, 0.026299398, 0.29185227, 0.6258966, 0.7232398, -0.3399399, -0.6389117, 0.69009596, 0.43637085, 0.4444189, -4.001545)
 bone_name = "arm.003.r"
 bone_idx = 4
 
-[node name="Area3D" type="Area3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr"]
+[node name="Area3D" type="Area3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr" unique_id=1372400611]
 transform = Transform3D(0.894015, 0.291852, -0.33994, -0.447264, 0.625897, -0.638912, 0.0262994, 0.72324, 0.690096, -1.88425, -2.6485, 2.4183)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr/Area3D" unique_id=65567709]
 transform = Transform3D(0.893824, -0.447168, 0.0262956, 0.291815, 0.625896, 0.723242, -0.33994, -0.638912, 0.690002, 1.08627, -0.237261, -2.75751)
 shape = SubResource("BoxShape3D_dpjcl")
 
-[node name="Slot" type="Node3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr"]
+[node name="Slot" type="Node3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/Skeleton3D/fistr" unique_id=1172062179]
 
 [node name="AnimationPlayer" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" index="1"]
 speed_scale = 3.0
 
-[node name="AnimationTree" type="AnimationTree" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms"]
+[node name="AnimationTree" type="AnimationTree" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=1583798137]
 tree_root = SubResource("AnimationNodeBlendTree_ne4r8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/OneShot/active = false
@@ -134,13 +135,13 @@ parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
 parameters/TimeScale/scale = 3.0
 
-[node name="DamageComponent" type="Node" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" node_paths=PackedStringArray("hitboxes")]
+[node name="DamageComponent" type="Node" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms" unique_id=2022036486 node_paths=PackedStringArray("hitboxes")]
 script = ExtResource("2_dlxix")
 player = true
 Has_Hitbox = true
 hitboxes = [NodePath("../Skeleton3D/fistr/Area3D")]
 
-[node name="ColorRect" type="ColorRect" parent="Neck/Camera3D/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Neck/Camera3D/CanvasLayer" unique_id=1232329260]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,17 +151,14 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 0, 0, 0.207843)
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=1709134381]
 script = ExtResource("4_euvb2")
-Max_Health = 5
+max_health = 5
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1621867952]
 wait_time = 0.35
 
 [connection signal="attacked" from="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent" to="." method="_on_damage_component_attacked"]
-[connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
-[connection signal="Hit" from="HealthComponent" to="." method="_on_health_component_hit"]
-[connection signal="Low_health" from="HealthComponent" to="." method="_on_health_component_low_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms"]

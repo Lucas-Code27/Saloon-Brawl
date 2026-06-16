@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1r18ke1v3ivi"]
+[gd_scene format=3 uid="uid://d1r18ke1v3ivi"]
 
 [ext_resource type="Script" uid="uid://bfbxcc75ta2e6" path="res://Src/Levels/main_menu.gd" id="1_6cs7p"]
 [ext_resource type="PackedScene" uid="uid://cf8njnp41owya" path="res://Src/Levels/test_map.tscn" id="2_8wsh4"]
+[ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="3_ivmke"]
 [ext_resource type="AudioStream" uid="uid://oans2m5207xb" path="res://Assets/Music/GLORGLUEPINBACNTOECDPOP.wav" id="3_o7wo5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yd56w"]
 font_size = 32
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=1904510589]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,7 +18,7 @@ grow_vertical = 2
 script = ExtResource("1_6cs7p")
 game_scene = ExtResource("2_8wsh4")
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=264215032]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -27,10 +28,11 @@ offset_top = 20.0
 offset_right = 50.5
 offset_bottom = 43.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_ivmke")
 text = "Saloon Brawl"
 label_settings = SubResource("LabelSettings_yd56w")
 
-[node name="Button" type="Button" parent="."]
+[node name="Play" type="Button" parent="." unique_id=918617652]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,9 +45,10 @@ offset_right = 20.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ivmke")
 text = "Play"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Quit" type="Button" parent="." unique_id=532070516]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,11 +61,12 @@ offset_right = 21.0
 offset_bottom = 65.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_ivmke")
 text = "Quit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=65604917]
 stream = ExtResource("3_o7wo5")
 autoplay = true
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_button_2_pressed"]

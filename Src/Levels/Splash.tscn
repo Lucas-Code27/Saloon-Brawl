@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6dt6tkb5wu2e"]
+[gd_scene format=3 uid="uid://c6dt6tkb5wu2e"]
 
 [ext_resource type="Script" uid="uid://2pjw3dq3sq86" path="res://Src/Levels/splash.gd" id="1_gn7lx"]
 [ext_resource type="FontFile" uid="uid://dh7g8bcf7jgjk" path="res://Assets/PirataOne-Regular.ttf" id="1_oljkc"]
@@ -64,7 +64,7 @@ _data = {
 &"fade_in_out": SubResource("Animation_8087u")
 }
 
-[node name="Splash" type="Control"]
+[node name="Splash" type="Control" unique_id=2124209127]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +74,7 @@ grow_vertical = 2
 script = ExtResource("1_gn7lx")
 NextScene = ExtResource("2_m1xej")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1478519947]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.195472, 0.238466, 0.176613, 1)
 
-[node name="Text" type="Label" parent="."]
+[node name="Text" type="Label" parent="." unique_id=2089231382]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,7 +99,7 @@ grow_vertical = 2
 text = "A game by Lucas-code and viylouu"
 label_settings = SubResource("LabelSettings_vqeie")
 
-[node name="Fade" type="ColorRect" parent="."]
+[node name="Fade" type="ColorRect" parent="." unique_id=1116554092]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,7 +108,5 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_plspo")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=343645529]
+libraries/ = SubResource("AnimationLibrary_plspo")

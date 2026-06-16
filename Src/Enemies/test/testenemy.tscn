@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://co2cairtrfyu4"]
+[gd_scene format=3 uid="uid://co2cairtrfyu4"]
 
 [ext_resource type="Script" uid="uid://fyr3ni574ycf" path="res://Src/Enemies/test/enemy.gd" id="1_3mr8k"]
 [ext_resource type="Script" uid="uid://bs47hqtbmhe1s" path="res://Src/Components/health_component.gd" id="1_uoaqt"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shader" uid="uid://p4foxpe3ma3t" path="res://Assets/Shaders/hit_flash.tres" id="4_aiydj"]
 [ext_resource type="PackedScene" uid="uid://bckvoy4785qwf" path="res://Assets/Models/Enemy.glb" id="5_4bfyv"]
 [ext_resource type="Material" uid="uid://brccfcercfwv6" path="res://Assets/Shaders/testenemy.tres" id="5_fcpj4"]
+[ext_resource type="Shader" uid="uid://4h4qgeuev1qq" path="res://Assets/Shaders/ps1.gdshader" id="6_gkoj6"]
+[ext_resource type="Texture2D" uid="uid://c7vd1ocy5dur" path="res://Assets/Models/Enemy_enemy.png" id="7_1pfsd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n40nn"]
 render_priority = 0
@@ -14,6 +16,16 @@ shader = ExtResource("4_aiydj")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0by0b"]
 radius = 0.25
 height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoxqn"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_gkoj6")
+shader_parameter/affine_mapping = true
+shader_parameter/albedo = ExtResource("7_1pfsd")
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.5
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmxff"]
 size = Vector3(39.8, 45.85, 37.55)
@@ -60,16 +72,15 @@ graph_offset = Vector2(-36, -29)
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_86h4l"]
-graph_offset = Vector2(-558.718, 6.22926)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_o21ha")
 nodes/Blend2/position = Vector2(100, 100)
 nodes/state/node = SubResource("AnimationNodeStateMachine_bupo1")
 nodes/state/position = Vector2(-180, 40)
 nodes/walk/node = SubResource("AnimationNodeAnimation_mrpca")
 nodes/walk/position = Vector2(-180, 200)
-node_connections = [&"Blend2", 0, &"state", &"Blend2", 1, &"walk", &"output", 0, &"Blend2"]
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"state", &"Blend2", 1, &"walk"]
 
-[node name="Testenemy" type="CharacterBody3D" node_paths=PackedStringArray("hurter", "armanim", "animtree")]
+[node name="Testenemy" type="CharacterBody3D" unique_id=61235103 node_paths=PackedStringArray("hurter", "armanim", "animtree")]
 collision_layer = 2
 script = ExtResource("1_3mr8k")
 hurter = NodePath("Mesh/DamageComponent")
@@ -81,109 +92,101 @@ normalmat = ExtResource("5_fcpj4")
 flashmat = SubResource("ShaderMaterial_n40nn")
 attacking = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1453954869]
 shape = SubResource("CapsuleShape3D_0by0b")
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=408632275]
 script = ExtResource("1_uoaqt")
-Max_Health = 3
+max_health = 3
 
-[node name="Mesh" parent="." instance=ExtResource("5_4bfyv")]
+[node name="Mesh" parent="." unique_id=1159835438 instance=ExtResource("5_4bfyv")]
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, -0.35, 0)
 
-[node name="Skeleton3D" parent="Mesh/Armature" index="0"]
-bones/0/position = Vector3(-13.7832, -7.98749, -359.382)
-bones/0/rotation = Quaternion(-0.644189, -0.0361865, -0.0496352, 0.762396)
-bones/1/position = Vector3(5.72205e-06, 36.4075, -0.291597)
-bones/1/rotation = Quaternion(0.0542265, 0.0092362, -0.0197737, 0.99829)
-bones/2/rotation = Quaternion(0.116283, 0.0187822, -0.0440732, 0.99206)
-bones/3/position = Vector3(1.90735e-06, 48.5449, -5.69224e-06)
-bones/3/rotation = Quaternion(0.116283, 0.0187825, -0.0440733, 0.99206)
-bones/4/position = Vector3(1.43051e-06, 54.6129, 3.52583e-06)
-bones/4/rotation = Quaternion(0.0387652, 0.0228933, -0.00318141, 0.998981)
-bones/5/position = Vector3(-3.8147e-06, 74.7011, 4.10867)
-bones/5/rotation = Quaternion(-0.0867978, 0.34292, -0.0700058, 0.932722)
-bones/6/position = Vector3(8.58307e-06, 153.394, 8.43701)
-bones/7/position = Vector3(38.9849, 38.9741, -0.00578415)
-bones/7/rotation = Quaternion(-0.595224, -0.399055, 0.536571, -0.445595)
-bones/7/scale = Vector3(1, 1, 1)
-bones/8/position = Vector3(1.88201e-05, 84.2584, -1.71952e-05)
-bones/8/rotation = Quaternion(0.322946, -0.235924, -0.00602781, 0.91652)
-bones/9/position = Vector3(5.80908e-06, 114.805, -8.997e-06)
-bones/9/rotation = Quaternion(0.00544429, 5.14863e-05, 0.892249, 0.451511)
-bones/10/position = Vector3(-1.17682e-05, 161.861, -4.17979e-05)
-bones/11/position = Vector3(-38.9848, 38.976, -0.244698)
-bones/11/rotation = Quaternion(0.757644, -0.323167, 0.414842, 0.38658)
-bones/11/scale = Vector3(1, 1, 1)
-bones/12/position = Vector3(4.8783e-05, 84.2585, -2.13592e-05)
-bones/12/rotation = Quaternion(0.0808716, 0.133104, -0.460684, 0.873793)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/position = Vector3(-1.72715e-06, 114.804, 1.38729e-05)
-bones/13/rotation = Quaternion(0.00978824, -3.01385e-05, -0.821909, 0.569534)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/position = Vector3(-1.16006e-05, 161.859, -1.60513e-06)
-bones/15/position = Vector3(48.9208, -20.1773, -0.372434)
-bones/15/rotation = Quaternion(0.0227529, 0.275279, 0.956251, -0.0963735)
-bones/15/scale = Vector3(1.00001, 1, 1)
-bones/16/position = Vector3(8.08286e-06, 147.747, 5.67881e-06)
-bones/16/rotation = Quaternion(-0.640882, -0.0520781, 0.03419, 0.765108)
-bones/16/scale = Vector3(1, 1, 1)
-bones/17/position = Vector3(-4.05462e-06, 169.362, -1.12482e-05)
-bones/17/rotation = Quaternion(0.474761, -0.0111502, -0.00994299, 0.879988)
-bones/17/scale = Vector3(1, 1, 1)
-bones/18/position = Vector3(-1.53683e-06, 102.817, -7.71462e-06)
-bones/18/rotation = Quaternion(0.61919, -0.23023, 0.0184199, 0.750505)
-bones/19/position = Vector3(1.13248e-06, 42.282, -1.43051e-06)
-bones/20/position = Vector3(-48.9208, -20.1773, -1.05441)
-bones/20/rotation = Quaternion(-0.0332799, 0.305994, 0.947257, -0.0892477)
-bones/21/position = Vector3(7.12101e-06, 147.745, 2.22992e-05)
-bones/21/rotation = Quaternion(-0.344245, 0.0646505, -0.0116033, 0.936579)
-bones/21/scale = Vector3(1, 1, 1)
-bones/22/position = Vector3(5.35286e-07, 169.374, -2.22938e-06)
-bones/22/rotation = Quaternion(0.612105, -0.0180615, -0.0417423, 0.789468)
-bones/23/position = Vector3(1.08661e-05, 99.1113, 7.60797e-06)
-bones/23/rotation = Quaternion(0.229204, 0.0836083, -0.0194941, 0.969585)
-bones/24/position = Vector3(-6.55624e-07, 42.4234, 3.33786e-06)
+[node name="Skeleton3D" parent="Mesh/Armature" parent_id_path=PackedInt32Array(1159835438, 224218413) index="0" unique_id=504823739]
+bones/0/position = Vector3(-13.873828, -8.302488, -360.91992)
+bones/0/rotation = Quaternion(-0.64341253, -0.037737414, -0.047689304, 0.7631002)
+bones/1/position = Vector3(5.722046e-06, 36.40748, -0.29159743)
+bones/1/rotation = Quaternion(0.0542265, 0.0092362, -0.019773653, 0.9982902)
+bones/2/rotation = Quaternion(0.11628263, 0.018782215, -0.044073194, 0.99206007)
+bones/3/position = Vector3(1.9073486e-06, 48.54486, -5.6922436e-06)
+bones/3/rotation = Quaternion(0.116282664, 0.018782508, -0.04407326, 0.99206007)
+bones/4/position = Vector3(1.4305115e-06, 54.612896, 3.5258302e-06)
+bones/4/rotation = Quaternion(0.038765196, 0.022893285, -0.0031814089, 0.998981)
+bones/5/position = Vector3(-3.8146973e-06, 74.70112, 4.1086683)
+bones/5/rotation = Quaternion(-0.08679776, 0.3429201, -0.070005834, 0.93272245)
+bones/6/position = Vector3(8.583069e-06, 153.39407, 8.437015)
+bones/7/position = Vector3(38.98486, 38.974144, -0.0057841544)
+bones/7/rotation = Quaternion(-0.5952239, -0.3990553, 0.5365707, -0.4455954)
+bones/8/position = Vector3(1.8820052e-05, 84.25844, -1.7195187e-05)
+bones/8/rotation = Quaternion(0.3229464, -0.23592448, -0.006027809, 0.91652006)
+bones/9/position = Vector3(5.8090836e-06, 114.80487, -8.997004e-06)
+bones/9/rotation = Quaternion(0.005444292, 5.1486306e-05, 0.89224917, 0.45151052)
+bones/10/position = Vector3(-1.1768192e-05, 161.86052, -4.1797888e-05)
+bones/11/position = Vector3(-38.984848, 38.976048, -0.24469754)
+bones/11/rotation = Quaternion(0.7576444, -0.32316685, 0.4148422, 0.38658014)
+bones/12/position = Vector3(4.878302e-05, 84.258484, -2.1359245e-05)
+bones/12/rotation = Quaternion(0.08087164, 0.13310374, -0.46068358, 0.8737929)
+bones/13/position = Vector3(-1.727146e-06, 114.80423, 1.387291e-05)
+bones/13/rotation = Quaternion(0.009788241, -3.013853e-05, -0.8219094, 0.5695341)
+bones/14/position = Vector3(-1.1600554e-05, 161.85901, -1.6051345e-06)
+bones/15/position = Vector3(48.920826, -20.177307, -0.37243402)
+bones/15/rotation = Quaternion(0.02226348, 0.29032576, 0.9524028, -0.09024542)
+bones/16/position = Vector3(8.082857e-06, 147.74658, 5.678807e-06)
+bones/16/rotation = Quaternion(-0.6452265, -0.05861564, 0.040416088, 0.7606666)
+bones/17/position = Vector3(-4.054624e-06, 169.36159, -1.1248154e-05)
+bones/17/rotation = Quaternion(0.4923569, -0.0055524884, -0.0010747432, 0.8703751)
+bones/18/position = Vector3(-1.536826e-06, 102.81697, -7.714618e-06)
+bones/18/rotation = Quaternion(0.6957662, -0.24057393, 0.0258232, 0.67628896)
+bones/19/position = Vector3(1.1324842e-06, 42.281975, -1.430511e-06)
+bones/20/position = Vector3(-48.920834, -20.17733, -1.0544056)
+bones/20/rotation = Quaternion(-0.034471165, 0.29334998, 0.9511887, -0.089430116)
+bones/21/position = Vector3(7.121006e-06, 147.74538, 2.2299171e-05)
+bones/21/rotation = Quaternion(-0.33519548, 0.061243407, -0.009301705, 0.9401099)
+bones/22/position = Vector3(5.352856e-07, 169.37393, -2.2293755e-06)
+bones/22/rotation = Quaternion(0.61541855, -0.019282164, -0.042159982, 0.7868359)
+bones/23/position = Vector3(1.0866123e-05, 99.11128, 7.607974e-06)
+bones/23/rotation = Quaternion(0.22924925, 0.08360996, -0.019491643, 0.96957433)
+bones/24/position = Vector3(-6.5562426e-07, 42.423363, 3.337862e-06)
 
-[node name="Cube" parent="Mesh/Armature/Skeleton3D" index="0"]
-surface_material_override/0 = ExtResource("5_fcpj4")
+[node name="Cube" parent="Mesh/Armature/Skeleton3D" index="0" unique_id=1083259445]
+surface_material_override/0 = SubResource("ShaderMaterial_uoxqn")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.364055, 0.0505953, -0.930002, 0.127336, 0.986444, 0.103512, 0.922632, -0.156107, 0.352676, 165.871, 128.329, -378.729)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Armature/Skeleton3D" index="1" unique_id=1186523056]
+transform = Transform3D(0.3635129, 0.045553405, -0.93047464, 0.12752967, 0.9869671, 0.098141894, 0.92281866, -0.15433908, 0.3529657, 165.08154, 128.9612, -380.0421)
 bone_name = "mixamorig_LeftHand"
 bone_idx = 10
 
-[node name="Area3D" type="Area3D" parent="Mesh/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="Area3D" type="Area3D" parent="Mesh/Armature/Skeleton3D/BoneAttachment3D" unique_id=316122569]
 collision_layer = 0
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Armature/Skeleton3D/BoneAttachment3D/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Armature/Skeleton3D/BoneAttachment3D/Area3D" unique_id=1036562283]
 transform = Transform3D(1, -1.62981e-07, 9.31323e-09, -6.89179e-08, 0.999999, 4.76837e-07, 4.2282e-07, -6.55651e-07, 0.999999, -5.31478, 24.6763, 0.290207)
 shape = SubResource("BoxShape3D_qmxff")
 
-[node name="AnimationTree" type="AnimationTree" parent="Mesh"]
+[node name="AnimationTree" type="AnimationTree" parent="Mesh" unique_id=830984754]
 tree_root = SubResource("AnimationNodeBlendTree_86h4l")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 1.0
 
-[node name="DamageComponent" type="Node" parent="Mesh" node_paths=PackedStringArray("hitboxes")]
+[node name="DamageComponent" type="Node" parent="Mesh" unique_id=1123090106 node_paths=PackedStringArray("hitboxes")]
 script = ExtResource("4_1ntja")
 Has_Hitbox = true
 hitboxes = [NodePath("../Armature/Skeleton3D/BoneAttachment3D/Area3D")]
 hitstopdur = 0.05
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=389100155]
 process_callback = 0
 wait_time = 2.0
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1661056056]
 debug_enabled = true
 
-[node name="despawn" type="Timer" parent="."]
+[node name="despawn" type="Timer" parent="." unique_id=362110248]
 wait_time = 3.0
 
-[connection signal="Die" from="HealthComponent" to="." method="_on_health_component_die"]
-[connection signal="Hit" from="HealthComponent" to="." method="_on_health_component_hit"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="Mesh"]

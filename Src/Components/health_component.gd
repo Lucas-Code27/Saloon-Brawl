@@ -2,27 +2,25 @@ extends Node
 class_name HealthComponent
 
 # Signals
-signal Die
-signal Hit
-signal Low_health
+signal died
+signal hit
+signal health_low
 
 # Vars
 @export_group("Stats")
-@export var Max_Health:int
-var Health:int
+@export var max_health: int
+var health: int
 
 func _ready() -> void:
-	Health = Max_Health
+	health = max_health
 
-# Taking Damage
-func Hurt(damage:int) -> void:
-	if not Health <= 0:
-		Hit.emit()
-		Health -= damage
-		
-		if Health == 1:
-			Low_health.emit()
-		
-		# Checking for death
-		if Health <= 0:
-			Die.emit()
+func hurt(damage: int) -> void:
+	health -= damage
+	
+	hit.emit()
+	
+	if health == 1:
+		health_low.emit()
+	
+	if health <= 0:
+		died.emit()

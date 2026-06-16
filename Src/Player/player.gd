@@ -3,25 +3,19 @@ extends CharacterBody3D
 const SPEED: int = 2
 const SENSITIVITY: float = 0.004
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity: float = 9.8
-
 @onready var head: Node3D = $Neck
 @onready var camera: Camera3D = $Neck/Camera3D
-@onready var hurter:DamageComponent = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent
-@onready var animtree:AnimationTree = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationTree
-@onready var armcam:Camera3D = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam
+@onready var hurter: DamageComponent = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent
+@onready var animtree: AnimationTree = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationTree
+@onready var armcam: Camera3D = $Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam
 
-#var hasweapon:bool = false
-
-var canpunch:bool = true
+var canpunch: bool = true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	animtree.set("parameters/OneShot/active",true)
 
-
-func _unhandled_input(event:InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		#camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -30,19 +24,9 @@ func _unhandled_input(event:InputEvent) -> void:
 func _process(_delta: float) -> void:
 	armcam.global_transform = camera.global_transform
 
-func _physics_process(delta:float) -> void:
-	# Add the gravity.
+func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y -= gravity * delta
-	
-	#if Input.is_action_just_pressed("pickup") and pickeruper.is_colliding():
-		#if pickeruper.get_collider().has_method("pick_up"):
-			#var object:Weapon = pickeruper.get_collider()
-			#get_tree().current_scene.remove_child(object)
-			#weaponslot.add_child(object)
-			#object.pick_up(weaponslot)
-			#hasweapon = true
-			#print("holding")
+		velocity.y -= get_gravity().y * delta
 	
 	if Input.is_action_just_pressed("punch") and canpunch:
 		canpunch = false
@@ -53,12 +37,11 @@ func _physics_process(delta:float) -> void:
 		await get_tree().create_timer(0.27).timeout
 		hurter.damaging = false
 	
-	var look_dir:float = Input.get_axis("lookright","lookleft")
+	var look_dir: float = Input.get_axis("lookright","lookleft")
 	head.rotate_y(look_dir * 0.1)
 	
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir:Vector2 = Input.get_vector("left", "right", "up", "down")
-	var direction:Vector3 = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
+	var direction: Vector3 = (head.transform.basis * transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * SPEED
@@ -77,18 +60,14 @@ func _on_health_component_die() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().call_deferred("change_scene_to_file","res://Src/Levels/DeathScreen.tscn")
 
-
 func _on_health_component_hit() -> void:
 	$Neck/Camera3D.add_shake(1)
-
 
 func _on_damage_component_attacked() -> void:
 	$Neck/Camera3D.add_shake(0.6)
 
-
 func _on_timer_timeout() -> void:
 	canpunch = true
-
 
 func _on_health_component_low_health() -> void:
 	$Neck/Camera3D/CanvasLayer/ColorRect.visible = true
