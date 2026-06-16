@@ -182,7 +182,6 @@ process_callback = 0
 wait_time = 2.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1661056056]
-debug_enabled = true
 
 [node name="despawn" type="Timer" parent="." unique_id=362110248]
 wait_time = 3.0
