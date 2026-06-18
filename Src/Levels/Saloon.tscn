@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://dg14i7nn7kgpj" path="res://Src/Components/spawner_3d.gd" id="10_meem8"]
 [ext_resource type="PackedScene" uid="uid://co2cairtrfyu4" path="res://Src/Enemies/test/testenemy.tscn" id="11_8u3fr"]
 [ext_resource type="PackedScene" uid="uid://cxublyemvpejd" path="res://Assets/map piece/Table.tscn" id="11_mlark"]
+[ext_resource type="Texture2D" uid="uid://b60f64hr7na14" path="res://Assets/Textures/sand.png" id="14_1hagn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tdvlq"]
 sky_top_color = Color(0, 0.537233, 0.994801, 1)
@@ -31,9 +32,13 @@ background_color = Color(0.359181, 0.707724, 1, 1)
 background_energy_multiplier = 0.8
 sky = SubResource("Sky_mlark")
 tonemap_mode = 2
+fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.646984, 0.541372, 0.345756, 1)
+fog_light_color = Color(0.73333335, 0.654902, 0.47843137, 1)
 fog_density = 1.0
+fog_sky_affect = 0.0
+fog_depth_begin = 16.0
+fog_depth_end = 30.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fb4b2"]
 resource_local_to_scene = true
@@ -83,11 +88,20 @@ size = Vector3(5.25, 2.55, 9.7)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mlark"]
 size = Vector3(0.05, 1, 4.8)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l552b"]
+albedo_texture = ExtResource("14_1hagn")
+uv1_scale = Vector3(100, 100, 100)
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mlark"]
+material = SubResource("StandardMaterial3D_l552b")
+size = Vector2(100, 100)
+
 [node name="Saloon" type="Node3D" unique_id=2115514011]
 script = ExtResource("1_2cy13")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=484753517]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.50000286, 0.7499991, -0.43301105, 1.4756225e-08, 0.4999982, 0.8660265, 0.8660234, 0.4330163, -0.250001, 0, 0, 0)
 layers = 3
 light_energy = 2.0
 directional_shadow_mode = 0
@@ -324,5 +338,8 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 script = ExtResource("10_meem8")
 spawned = ExtResource("11_8u3fr")
 metadata/_custom_type_script = "uid://dg14i7nn7kgpj"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=297714797]
+mesh = SubResource("PlaneMesh_mlark")
 
 [editable path="Map/Table"]

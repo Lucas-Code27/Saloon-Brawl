@@ -119,8 +119,8 @@ max_health = 3
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0, -0.35, 0)
 
 [node name="Skeleton3D" parent="Mesh/Armature" parent_id_path=PackedInt32Array(1159835438, 1710978072) index="0" unique_id=151260256]
-bones/0/position = Vector3(-13.948873, -9.09709, -364.09473)
-bones/0/rotation = Quaternion(-0.64186066, -0.04154453, -0.04210927, 0.7645363)
+bones/0/position = Vector3(-11.959157, -9.74904, -368.75684)
+bones/0/rotation = Quaternion(-0.63963133, -0.02542915, -0.0153155085, 0.7681084)
 bones/1/position = Vector3(5.722046e-06, 36.40748, -0.29159743)
 bones/1/rotation = Quaternion(0.0542265, 0.0092362, -0.019773653, 0.9982902)
 bones/2/rotation = Quaternion(0.11628263, 0.018782215, -0.044073194, 0.99206007)
@@ -146,29 +146,29 @@ bones/13/position = Vector3(-1.727146e-06, 114.80423, 1.387291e-05)
 bones/13/rotation = Quaternion(0.009788241, -3.013853e-05, -0.8219094, 0.5695341)
 bones/14/position = Vector3(-1.1600554e-05, 161.85901, -1.6051345e-06)
 bones/15/position = Vector3(48.920826, -20.177307, -0.37243402)
-bones/15/rotation = Quaternion(0.024719868, 0.3191288, 0.9441022, -0.07884734)
+bones/15/rotation = Quaternion(0.08876621, 0.037670024, 0.99370825, -0.056969896)
 bones/16/position = Vector3(8.082857e-06, 147.74658, 5.678807e-06)
-bones/16/rotation = Quaternion(-0.64066875, -0.06519945, 0.045602422, 0.7636838)
+bones/16/rotation = Quaternion(-0.22838426, 0.04256577, -0.03135632, 0.97213465)
 bones/17/position = Vector3(-4.054624e-06, 169.36159, -1.1248154e-05)
-bones/17/rotation = Quaternion(0.52612656, 0.0030557648, 0.017080305, 0.8502293)
+bones/17/rotation = Quaternion(0.7172477, 0.029084463, 0.046638943, 0.6946471)
 bones/18/position = Vector3(-1.536826e-06, 102.81697, -7.714618e-06)
-bones/18/rotation = Quaternion(0.5333539, -0.21688282, 0.010616807, 0.8175468)
+bones/18/rotation = Quaternion(0.30459657, -0.09094245, 0.014464179, 0.9480196)
 bones/19/position = Vector3(1.1324842e-06, 42.281975, -1.430511e-06)
 bones/20/position = Vector3(-48.920834, -20.17733, -1.0544056)
-bones/20/rotation = Quaternion(-0.03750278, 0.26100317, 0.96056956, -0.08818756)
+bones/20/rotation = Quaternion(-0.011000187, 0.36925316, 0.92758894, -0.055765796)
 bones/21/position = Vector3(7.121006e-06, 147.74538, 2.2299171e-05)
-bones/21/rotation = Quaternion(-0.30821484, 0.04972235, -0.0030906866, 0.9500115)
+bones/21/rotation = Quaternion(-0.30735976, 0.08102947, -0.012333565, 0.9480571)
 bones/22/position = Vector3(5.352856e-07, 169.37393, -2.2293755e-06)
-bones/22/rotation = Quaternion(0.6199643, -0.020744484, -0.04402933, 0.7831191)
+bones/22/rotation = Quaternion(0.6055572, -0.005213129, -0.030130297, 0.79521406)
 bones/23/position = Vector3(1.0866123e-05, 99.11128, 7.607974e-06)
-bones/23/rotation = Quaternion(0.23076177, 0.083665915, -0.019407978, 0.9692123)
+bones/23/rotation = Quaternion(0.22699997, 0.08352636, -0.019615818, 0.9701081)
 bones/24/position = Vector3(-6.5562426e-07, 42.423363, 3.337862e-06)
 
 [node name="Cube" parent="Mesh/Armature/Skeleton3D" index="0" unique_id=154864908]
 surface_material_override/0 = SubResource("ShaderMaterial_gkoj6")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Mesh/Armature/Skeleton3D" index="1" unique_id=1186523056]
-transform = Transform3D(0.36298507, 0.03185148, -0.93125033, 0.12932792, 0.98802024, 0.08420311, 0.9227762, -0.15100119, 0.35451716, 163.08778, 130.66498, -382.97836)
+transform = Transform3D(0.41423455, 0.002550154, -0.91016644, 0.13090296, 0.9894326, 0.062348913, 0.9007074, -0.14497058, 0.40952322, 160.74022, 133.8144, -396.97845)
 bone_name = "mixamorig_LeftHand"
 bone_idx = 10
 
