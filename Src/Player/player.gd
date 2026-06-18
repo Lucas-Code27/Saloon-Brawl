@@ -56,10 +56,10 @@ func _on_health_component_die() -> void:
 	get_tree().call_deferred("change_scene_to_file","res://Src/Levels/DeathScreen.tscn")
 
 func _on_health_component_hit() -> void:
-	$Neck/Camera3D.add_shake(1)
+	camera.add_shake(1)
 
 func _on_damage_component_attacked() -> void:
-	$Neck/Camera3D.add_shake(0.6)
+	camera.add_shake(0.6)
 
 func _on_health_component_low_health() -> void:
 	$Neck/Camera3D/CanvasLayer/ColorRect.visible = true

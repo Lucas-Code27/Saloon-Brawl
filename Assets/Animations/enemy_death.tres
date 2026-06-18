@@ -311,3 +311,17 @@ tracks/43/path = NodePath("Armature/Skeleton3D:mixamorig_RightToe_End")
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = PackedFloat32Array(0, 1, -2.7626726e-05, 42.42335, 7.152147e-07)
+tracks/44/type = "method"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("../DeathImpactParticles")
+tracks/44/interp = 1
+tracks/44/loop_wrap = true
+tracks/44/keys = {
+"times": PackedFloat32Array(0.73333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"restart"
+}]
+}

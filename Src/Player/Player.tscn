@@ -12,10 +12,6 @@
 radius = 0.25
 height = 1.0
 
-[sub_resource type="Environment" id="Environment_35oun"]
-background_mode = 1
-background_color = Color(1, 1, 1, 1)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkgdi"]
 resource_name = "Material"
 cull_mode = 2
@@ -225,7 +221,6 @@ render_target_update_mode = 4
 [node name="armcam" type="Camera3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport" unique_id=694635431]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 cull_mask = 1047554
-environment = SubResource("Environment_35oun")
 
 [node name="arms" type="Node3D" parent="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam" unique_id=738055544]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.15, 0)

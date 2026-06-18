@@ -88,6 +88,7 @@ script = ExtResource("1_2cy13")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=484753517]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+layers = 3
 light_energy = 2.0
 directional_shadow_mode = 0
 
