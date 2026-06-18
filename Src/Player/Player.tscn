@@ -249,9 +249,9 @@ bones/2/name = "arm.001.r"
 bones/2/parent = 1
 bones/2/rest = Transform3D(-1, 0, -1.509958e-07, -1.509958e-07, 0, 1, 0, 1, 0, -2, 0, -0.393234)
 bones/2/enabled = true
-bones/2/position = Vector3(-3, 8.6211145e-09, -0.393234)
+bones/2/position = Vector3(-2, -8.881784e-15, -0.393234)
 bones/2/rotation = Quaternion(-5.3385094e-08, 0.7071068, 0.7071068, -5.3385094e-08)
-bones/2/scale = Vector3(0.99999994, 0.99999994, 1)
+bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "arm.002.r"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, -6.900713e-16, 8.742278e-08, 1.0896053e-15, 1, -4.5701363e-09, -8.742278e-08, 4.5701363e-09, 1, -8.65974e-15, 2.9907115, 4.9637062e-08)
@@ -270,9 +270,9 @@ bones/5/name = "arm.001.l"
 bones/5/parent = 1
 bones/5/rest = Transform3D(-1, 0, 1.509958e-07, 1.509958e-07, 0, 1, 0, 1, 0, 2, 0, -0.393234)
 bones/5/enabled = true
-bones/5/position = Vector3(3.0000002, -0.48185095, -0.39323398)
+bones/5/position = Vector3(3.0000005, -1.232554, -0.393234)
 bones/5/rotation = Quaternion(-0.08850159, 0.64308596, 0.7535603, 0.103705175)
-bones/5/scale = Vector3(1.0000001, 1, 1)
+bones/5/scale = Vector3(1.0000004, 1, 1)
 bones/6/name = "arm.002.l"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, 6.900713e-16, -8.742278e-08, -1.0896053e-15, 1, -4.5701363e-09, 8.742278e-08, 4.5701363e-09, 1, 8.65974e-15, 2.9907115, 4.9637062e-08)
@@ -320,12 +320,8 @@ collision_mask = 3
 script = ExtResource("4_euvb2")
 max_health = 5
 
-[node name="Timer" type="Timer" parent="." unique_id=1621867952]
-wait_time = 0.35
-
 [connection signal="animation_finished" from="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="attacked" from="Neck/Camera3D/CanvasLayer/SubViewportContainer/SubViewport/armcam/arms/DamageComponent" to="." method="_on_damage_component_attacked"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_die"]
 [connection signal="health_low" from="HealthComponent" to="." method="_on_health_component_low_health"]
 [connection signal="hit" from="HealthComponent" to="." method="_on_health_component_hit"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("punch") and canpunch:
 		canpunch = false
 		AudioManager.play("swing",randf_range(0.9,1.1))
-		$Timer.start()
 		animplayer.play("Punch")
 	
 	var look_dir: float = Input.get_axis("lookright","lookleft")
@@ -51,7 +50,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * 3.0)
 	move_and_slide()
 
-
 func _on_health_component_die() -> void:
 	get_tree().current_scene.end_game()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -63,12 +61,10 @@ func _on_health_component_hit() -> void:
 func _on_damage_component_attacked() -> void:
 	$Neck/Camera3D.add_shake(0.6)
 
-func _on_timer_timeout() -> void:
-	canpunch = true
-
 func _on_health_component_low_health() -> void:
 	$Neck/Camera3D/CanvasLayer/ColorRect.visible = true
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Punch":
+		canpunch = true
 		animplayer.play("Idleanim")

@@ -43,6 +43,11 @@ window/vsync/vsync_mode=0
 window/quality/screen_space_aa=0
 window/quality/msaa_3d=0
 
+[gui]
+
+theme/default_font_antialiasing=0
+theme/custom="uid://cii5pk33s2x2y"
+
 [input]
 
 ui_accept={

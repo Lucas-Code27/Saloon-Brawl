@@ -8,6 +8,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_yd56w"]
 font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l4dys"]
 font = ExtResource("3_ivmke")
