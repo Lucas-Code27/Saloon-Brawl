@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_vqeie"]
 font = ExtResource("1_oljkc")
-font_size = 24
+font_size = 36
 font_color = Color(1, 0.831373, 0, 1)
 
 [sub_resource type="Animation" id="Animation_ye622"]
@@ -29,7 +29,7 @@ resource_name = "fade_in"
 
 [sub_resource type="Animation" id="Animation_8087u"]
 resource_name = "fade_in_out"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -37,10 +37,10 @@ tracks/0/path = NodePath("Fade:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5),
-"transitions": PackedFloat32Array(0.191185, 3, 1),
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(0.191185, 3, 3, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -49,7 +49,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.5),
+"times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -96,8 +96,10 @@ offset_right = 145.0
 offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "A game by Lucas-code and viylouu"
+text = "A game by Lucas-code
+Music by viylouu"
 label_settings = SubResource("LabelSettings_vqeie")
+horizontal_alignment = 1
 
 [node name="Fade" type="ColorRect" parent="." unique_id=1116554092]
 layout_mode = 1
