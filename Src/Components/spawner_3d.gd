@@ -1,4 +1,4 @@
-extends Node3D
+extends Marker3D
 class_name Spawner3D
 
 @export var spawned: PackedScene

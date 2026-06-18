@@ -33,7 +33,7 @@ anchor_bottom = 1.0
 offset_top = -30.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0.289224, 0.281014, 0.148112, 1)
+color = Color(0.2901961, 0.28235295, 0.14901961, 0.8627451)
 
 [node name="ScoreText" type="Label" parent="ColorRect" unique_id=118721208]
 layout_mode = 1
